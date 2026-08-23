@@ -35,7 +35,7 @@ defmodule Alfredpi.MixProject do
       {:nerves, "~> 1.10", runtime: false},
       {:shoehorn, "~> 0.9.1"},
       {:ring_logger, "~> 0.11.0"},
-      {:toolshed, "~> 0.4.0"},
+      {:toolshed, "~> 0.5.0"},
 
       # Allow Nerves.Runtime on host to support development, testing and CI.
       # See config/host.exs for usage.
@@ -43,7 +43,7 @@ defmodule Alfredpi.MixProject do
 
       # Dependencies for all targets except :host
       {:nerves_pack, "~> 0.7.1", targets: @all_targets},
-      {:observer_cli, "~> 1.7"},
+      {:observer_cli, "~> 2.0"},
       {:blinkchain,
        git: "https://github.com/valiot/blinkchain", submodules: "true", ref: "a10971c"},
       {:circuits_gpio, "~> 2.1"},
@@ -60,7 +60,6 @@ defmodule Alfredpi.MixProject do
       {:rabbit_manager, path: "../rabbit_manager"},
       {:alfredpi_ui, path: "../alfredpi_ui"},
       {:alfredpi_rpi3a, github: "olb17/alfredpi_rpi3a", runtime: false, targets: :alfredpi_rpi3a}
-
     ]
   end
 

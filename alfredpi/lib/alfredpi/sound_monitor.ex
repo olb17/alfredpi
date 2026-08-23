@@ -23,7 +23,16 @@ defmodule Alfredpi.SoundMonitor do
     ])
 
     status =
-      NervesUEvent.get([ "devices", "platform", "soc", "soc:sound", "sound", "card0", "controlC0", "uevent" ])
+      NervesUEvent.get([
+        "devices",
+        "platform",
+        "soc",
+        "soc:sound",
+        "sound",
+        "card0",
+        "controlC0",
+        "uevent"
+      ])
 
     Logger.debug("[SoundMonitor] Initial state: #{inspect(status)}")
     {:ok, nil}
