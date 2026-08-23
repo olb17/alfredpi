@@ -1,0 +1,267 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/alfredpi_ui_web/components/layouts.ex:85
+#: lib/alfredpi_ui_web/components/layouts.ex:121
+#, elixir-autogen, elixir-format
+msgid "API Swagger"
+msgstr ""
+
+#: lib/alfredpi_ui_web/components/core_components.ex:378
+#: lib/alfredpi_ui_web/live/choregraphy_live.html.heex:28
+#, elixir-autogen, elixir-format
+msgid "Actions"
+msgstr ""
+
+#: lib/alfredpi_ui_web/components/layouts.ex:67
+#: lib/alfredpi_ui_web/components/layouts.ex:103
+#, elixir-autogen, elixir-format
+msgid "Applications"
+msgstr ""
+
+#: lib/alfredpi_ui_web/components/layouts.ex:183
+#: lib/alfredpi_ui_web/components/layouts.ex:195
+#, elixir-autogen, elixir-format
+msgid "Attempting to reconnect"
+msgstr ""
+
+#: lib/alfredpi_ui_web/components/embed_app_component.ex:163
+#, elixir-autogen, elixir-format
+msgid "Auto start"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/choregraphy_live.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "Available choregraphies"
+msgstr ""
+
+#: lib/alfredpi_ui_web/components/layouts.ex:73
+#: lib/alfredpi_ui_web/components/layouts.ex:109
+#, elixir-autogen, elixir-format
+msgid "Choregraphies"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "Click nb"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/choregraphy_live.html.heex:26
+#, elixir-autogen, elixir-format
+msgid "Code"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:52
+#, elixir-autogen, elixir-format
+msgid "Color"
+msgstr ""
+
+#: lib/alfredpi_ui_web/components/layouts.ex:79
+#: lib/alfredpi_ui_web/components/layouts.ex:115
+#, elixir-autogen, elixir-format
+msgid "Configuration"
+msgstr ""
+
+#: lib/alfredpi_ui_web/components/embed_app_component.ex:147
+#, elixir-autogen, elixir-format
+msgid "Configuration of %{title}"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:97
+#, elixir-autogen, elixir-format
+msgid "Download"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:5
+#: lib/alfredpi_ui_web/live/home_live.html.heex:20
+#, elixir-autogen, elixir-format
+msgid "Ear"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/choregraphy_live.html.heex:18
+#, elixir-autogen, elixir-format
+msgid "Editor"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/choregraphy_live.html.heex:44
+#, elixir-autogen, elixir-format
+msgid "Execute"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:42
+#, elixir-autogen, elixir-format
+msgid "Get"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:33
+#, elixir-autogen, elixir-format
+msgid "Get ear position"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/general_live.html.heex:20
+#, elixir-autogen, elixir-format
+msgid "Halt"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/choregraphy_live.html.heex:58
+#, elixir-autogen, elixir-format
+msgid "Help"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:44
+#, elixir-autogen, elixir-format
+msgid "LED Color"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:49
+#, elixir-autogen, elixir-format
+msgid "Led"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:84
+#, elixir-autogen, elixir-format
+msgid "Load"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:14
+#, elixir-autogen, elixir-format
+msgid "Move"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "Move ear"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:18
+#, elixir-autogen, elixir-format
+msgid "Move ear to"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:29
+#, elixir-autogen, elixir-format
+msgid "Move to"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:95
+#, elixir-autogen, elixir-format
+msgid "Play"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:26
+#, elixir-autogen, elixir-format
+msgid "Position"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/general_live.html.heex:19
+#, elixir-autogen, elixir-format
+msgid "Reboot"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:89
+#, elixir-autogen, elixir-format
+msgid "Record"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:101
+#, elixir-autogen, elixir-format
+msgid "Reset"
+msgstr ""
+
+#: lib/alfredpi_ui_web/components/embed_app_component.ex:165
+#: lib/alfredpi_ui_web/live/choregraphy_live.html.heex:52
+#: lib/alfredpi_ui_web/live/general_live.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Save"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:54
+#, elixir-autogen, elixir-format
+msgid "Set"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/general_live.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "Settings"
+msgstr ""
+
+#: lib/alfredpi_ui_web/components/layouts.ex:190
+#, elixir-autogen, elixir-format
+msgid "Something went wrong!"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:58
+#, elixir-autogen, elixir-format
+msgid "Sounds"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/general_live.html.heex:5
+#, elixir-autogen, elixir-format
+msgid "Starting choregraphy"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/home_live.html.heex:92
+#, elixir-autogen, elixir-format
+msgid "Stop recording"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/general_live.html.heex:17
+#, elixir-autogen, elixir-format
+msgid "System"
+msgstr ""
+
+#: lib/alfredpi_ui_web/components/layouts.ex:61
+#: lib/alfredpi_ui_web/components/layouts.ex:97
+#, elixir-autogen, elixir-format
+msgid "Tests"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/choregraphy_live.html.heex:20
+#, elixir-autogen, elixir-format
+msgid "Title"
+msgstr ""
+
+#: lib/alfredpi_ui_web/components/layouts.ex:178
+#, elixir-autogen, elixir-format
+msgid "We can't find the internet"
+msgstr ""
+
+#: lib/alfredpi_ui_web/components/embed_app_component.ex:149
+#, elixir-autogen, elixir-format
+msgid "You can configure the application here. Changes will be applied after restarting the application."
+msgstr ""
+
+#: lib/alfredpi_ui_web/components/core_components.ex:74
+#, elixir-autogen, elixir-format
+msgid "close"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/general_live.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Language"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/general_live.html.heex:21
+#, elixir-autogen, elixir-format
+msgid "Are you sure?"
+msgstr ""
+
+#: lib/alfredpi_ui_web/live/general_live.html.heex:22
+#, elixir-autogen, elixir-format
+msgid "Factory Reset"
+msgstr ""
+
+#: lib/alfredpi_ui_web/components/surprise_component.ex:22
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Play now"
+msgstr ""

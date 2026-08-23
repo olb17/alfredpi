@@ -1,0 +1,10 @@
+- [ ] Modifier le Makefile
+- [ ] Compléter le `README.md`
+- [ ] Retirer les TODO du code
+- [ ] `git init `
+- [ ] Copier un gitconfig avec le bon email pour github
+- [ ] Faire un add & commit initial
+- [ ] Créer le repo github
+- [ ] Faire une compilation de test en local
+- [ ] Pousser le repo sur github
+- [ ] Faire une release avec un binaire attaché

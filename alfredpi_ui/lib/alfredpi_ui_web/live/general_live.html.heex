@@ -1,0 +1,27 @@
+<Layouts.app flash={@flash} current_menu={:configuration}>
+  <div class="flex items-stretch flex-wrap gap-4">
+    <.section title={gettext("Settings")} class="w-full">
+      <.simple_form for={@form} phx-change="validation" phx-submit="submit">
+        <.input field={@form[:startup_choregraphy_code]} label={gettext("Starting choregraphy")} />
+        <.input
+          field={@form[:language]}
+          type="select"
+          options={Ecto.Enum.values(Alfredpi.RabbitManager.Parameters, :language)}
+          label={gettext("Language")}
+        />
+        <:actions>
+          <.button>{gettext("Save")}</.button>
+        </:actions>
+      </.simple_form>
+    </.section>
+    <.section title={gettext("System")} class="w-full">
+      <div class="mt-5 inline-grid grid-cols-3 gap-4">
+        <.button phx-click="reboot">{gettext("Reboot")}</.button>
+        <.button phx-click="halt">{gettext("Halt")}</.button>
+        <.button phx-click="factory_reset" data-confirm={gettext("Are you sure?")}>
+          {gettext("Factory Reset")}
+        </.button>
+      </div>
+    </.section>
+  </div>
+</Layouts.app>

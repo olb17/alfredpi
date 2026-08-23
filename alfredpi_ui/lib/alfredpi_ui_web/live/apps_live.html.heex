@@ -1,0 +1,17 @@
+<Layouts.app flash={@flash} current_menu={:applications}>
+  <div class="grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+    <.live_component
+      :for={{id, app} <- @applications}
+      module={AlfredpiUiWeb.EmbedAppComponent}
+      id={id}
+      application={app.id}
+    >
+      <.live_component
+        :if={app.is_started && app.component}
+        module={app.component}
+        id={app.component}
+      >
+      </.live_component>
+    </.live_component>
+  </div>
+</Layouts.app>

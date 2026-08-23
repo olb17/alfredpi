@@ -1,0 +1,106 @@
+<Layouts.app flash={@flash} current_menu={:tests}>
+  <div class="grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+    <.section title={gettext("Move ear")}>
+      <.simple_form for={@form_move} phx-change="val-move" phx-submit="move">
+        <.input field={@form_move[:ear]} type="select" label={gettext("Ear")} options={@options} />
+        <.input
+          field={@form_move[:clicks]}
+          type="number"
+          min="-40"
+          max="40"
+          label={gettext("Click nb")}
+        />
+        <:actions>
+          <.button>{gettext("Move")}</.button>
+        </:actions>
+      </.simple_form>
+    </.section>
+    <.section title={gettext("Move ear to")}>
+      <.simple_form for={@form_pos} phx-change="val-pos" phx-submit="position">
+        <.input field={@form_pos[:ear]} type="select" label={gettext("Ear")} options={@options} />
+        <.input
+          field={@form_pos[:position]}
+          type="number"
+          min="-17"
+          max="17"
+          label={gettext("Position")}
+        />
+        <:actions>
+          <.button>{gettext("Move to")}</.button>
+        </:actions>
+      </.simple_form>
+    </.section>
+    <.section title={gettext("Get ear position")}>
+      <div class="my-10 flex">
+        <div class="text-2xl flex-1 mr-4 py-3 px-4 border-solid border-2 border-sky-500 rounded-lg text-center">
+          {@position_left}
+        </div>
+        <div class="text-2xl flex-1 py-3 px-4 border-solid border-2 border-sky-500 rounded-lg text-center">
+          {@position_right}
+        </div>
+      </div>
+      <.button phx-click="get-pos">{gettext("Get")}</.button>
+    </.section>
+    <.section title={gettext("LED Color")}>
+      <.simple_form for={@form_color} phx-change="val-color" phx-submit="color">
+        <.input
+          field={@form_color[:led]}
+          type="select"
+          label={gettext("Led")}
+          options={@options_leds}
+        />
+        <.input field={@form_color[:color]} type="color" label={gettext("Color")} />
+        <:actions>
+          <.button>{gettext("Set")}</.button>
+        </:actions>
+      </.simple_form>
+    </.section>
+    <.section title={gettext("Sounds")}>
+      <section phx-drop-target={@uploads.sound_file.ref}>
+        <form
+          :if={@sound_state == :pending || @sound_state == :loading}
+          id="sound_form"
+          phx-change="val-sound"
+          phx-submit="sound"
+        >
+          <.live_file_input class="file-input" upload={@uploads.sound_file} />
+
+          <%= for entry <- @uploads.sound_file.entries do %>
+            <article class="upload-entry">
+              <%!-- Phoenix.Component.upload_errors/2 returns a list of error atoms --%>
+              <%= for err <- upload_errors(@uploads.sound_file, entry) do %>
+                <p class="alert alert-danger">{error_to_string(err)}</p>
+              <% end %>
+            </article>
+          <% end %>
+
+          <%!-- Phoenix.Component.upload_errors/1 returns a list of error atoms --%>
+          <%= for err <- upload_errors(@uploads.sound_file) do %>
+            <p class="alert alert-danger">{error_to_string(err)}</p>
+          <% end %>
+
+          <div class="mt-4">
+            <.button :if={length(@uploads.sound_file.entries) >= 1}>
+              {gettext("Load")}
+            </.button>
+          </div>
+        </form>
+        <div :if={@sound_state == :pending} class="mt-4">
+          <.button phx-click="record-sound">{gettext("Record")}</.button>
+        </div>
+        <div :if={Kernel.match?({:recording, _}, @sound_state)} class="mt-4">
+          <.button phx-click="record-sound">{gettext("Stop recording")}</.button>
+        </div>
+        <div :if={Kernel.match?({:loaded, _file}, @sound_state)} class="mt-4">
+          <.button phx-click="play-sound">{gettext("Play")}</.button>
+          <.link navigate={~p"/download-sound-file/#{@sound_state |> elem(1)}"} download>
+            {gettext("Download")}
+          </.link>
+        </div>
+        <div :if={@sound_state != :pending} class="mt-4">
+          <.button phx-click="reset-sound">{gettext("Reset")}</.button>
+        </div>
+      </section>
+    </.section>
+  </div>
+</Layouts.app>
