@@ -50,6 +50,28 @@ http://alfredpi.local/
 
 If that address does not resolve, find the rabbit's IP address in your router and use `http://DEVICE_IP/`.
 
+## Connect over SSH
+
+From a computer on the same network, connect to the rabbit with:
+
+```sh
+ssh alfredpi@alfredpi.local
+```
+
+When prompted, enter `alfredpi` as the password. The username and password are both `alfredpi`.
+
+If `alfredpi.local` does not resolve, replace it with the rabbit's IP address:
+
+```sh
+ssh alfredpi@DEVICE_IP
+```
+
+The SSH session opens an Elixir shell that can control the rabbit through functions in `Alfredpi.RabbitManager`. To discover the available functions, run:
+
+```elixir
+h Alfredpi.RabbitManager
+```
+
 ### Reopen Wi-Fi setup
 
 Hold the configured hardware button for about five seconds. Alfredpi turns the LEDs red, stops the normal web interface and starts the Wi-Fi wizard. Releasing the button before five seconds is treated as a normal single-click event instead.
