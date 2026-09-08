@@ -62,7 +62,11 @@ defmodule Alfredpi.MixProject do
       # {:nerves_system_rpi3a, "~> 1.24", runtime: false, targets: :rpi3a}
       {:rabbit_manager, path: "../rabbit_manager"},
       {:alfredpi_ui, path: "../alfredpi_ui"},
-      {:alfredpi_rpi3a, github: "olb17/alfredpi_rpi3a", runtime: false, targets: :alfredpi_rpi3a}
+      {:alfredpi_rpi3a,
+       github: "olb17/alfredpi_rpi3a",
+       tag: "2.1.2-fix",
+       runtime: false,
+       targets: :alfredpi_rpi3a}
     ]
   end
 
