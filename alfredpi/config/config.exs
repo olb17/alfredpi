@@ -18,7 +18,7 @@ config :nerves, :firmware, rootfs_overlay: "rootfs_overlay"
 
 # Configures the endpoint
 config :alfredpi_ui, AlfredpiUiWeb.Endpoint,
-  url: [host: "192.168.100.115"],
+  url: [host: "alfredpi.local"],
   secret_key_base: "24rUGOxQZcRmS5/Ikmkcn5J8BnsewlStHva1fkGP2PljqXY863/bRF1uPw8cnSyc",
   http: [port: 80],
   server: true,

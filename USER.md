@@ -12,6 +12,16 @@ This guide explains how to install and operate Alfredpi on a compatible Nabaztag
 
 Alfredpi currently targets the custom `alfredpi_rpi3a` Nerves system. Do not install its firmware on unrelated hardware.
 
+## Security disclaimer
+
+> [!CAUTION]
+> The current firmware is intended for development or use on a trusted, isolated local network. It is not hardened for exposure to untrusted networks or the public internet. Review and address the following issues before deployment:
+>
+> 1. **Universal SSH credentials**: the advertised SSH service uses `alfredpi` as both its username and password.
+> 2. **Committed production signing secret**: `secret_key_base` is not differentiated by device.
+> 3. **Unauthenticated administration**: `/config`, choreography execution, API actions and device controls do not require authentication. In particular, `/config` can reboot, halt or reset the device.
+> 5. **Weak web configuration**: the configuration uses a fixed private IP, plaintext HTTP and `check_origin: false`.
+
 ## Install firmware on an SD card
 
 > [!WARNING]

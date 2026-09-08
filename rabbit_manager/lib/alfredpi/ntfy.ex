@@ -16,7 +16,7 @@ defmodule Alfredpi.Ntfy do
   end
 
   @ntfy_server ""
-  @topic "Lanorme_gitea"
+  @topic ""
 
   @impl Alfredpi.RabbitManager.EmbedApplication
   def application_name(), do: "Ntfy"
