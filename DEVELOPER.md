@@ -278,6 +278,30 @@ Or specify an explicit image:
 
 The script streams the image to the Nerves `fwup` SSH subsystem. Keep the device powered throughout the upload and update.
 
+### Firmware validation
+
+Nerves A/B firmware must mark the active slot as validated before another firmware update can safely replace the inactive slot. Check the status from the device's IEx shell:
+
+```elixir
+Nerves.Runtime.firmware_slots()
+Nerves.Runtime.firmware_validation_status()
+```
+
+If the status is `:unvalidated`, validate the running firmware after confirming that it boots and operates correctly:
+
+```elixir
+Nerves.Runtime.validate_firmware()
+Nerves.Runtime.firmware_validation_status()
+```
+
+The final status should be `:validated`. An unvalidated slot can cause an upload to fail with:
+
+```text
+fwup: Please check the media being upgraded. It doesn't look like either the A or B partitions are active.
+```
+
+If validation does not resolve the error, inspect `Nerves.Runtime.KV.get_all()` and verify that the installed SD-card partition layout matches the firmware's Nerves system. Do not force an `upgrade.a` or `upgrade.b` task without confirming the active slot and partition layout, since writing the wrong partition can make the device unbootable.
+
 ## Device configuration
 
 Key files include:
