@@ -90,4 +90,7 @@ echo "Platform: $FIRMWARE_PLATFORM"
 echo
 echo "Uploading to $DESTINATION..."
 
-cat "$FILENAME" | ssh -s $SSH_OPTIONS $DESTINATION fwup
+# OTP 29.0.6 rejects subsystem requests when the client forwards OS environment
+# variables. Keep the SSH agent available for encrypted keys, but clear variables
+# such as LANG and LC_* that the system SSH configuration sends by default.
+cat "$FILENAME" | env -i HOME="$HOME" PATH="$PATH" SSH_AUTH_SOCK="$SSH_AUTH_SOCK" ssh -s $SSH_OPTIONS "$DESTINATION" fwup
