@@ -1,0 +1,172 @@
+---
+name: building-alfredpi-choreographies
+description: Use when creating, editing, validating, saving, or playing choreographies for an Alfredpi rabbit through alfredpi.local.
+---
+
+# Building Alfredpi Choreographies
+
+## Overview
+
+Build timed rabbit performances using Alfredpi’s actual choreography DSL. Never invent actions or UI features; inspect the running rabbit and repository when uncertain.
+
+## Discovery
+
+Check the live rabbit first:
+
+- Editor: `http://alfredpi.local/choregraphy`
+- New choreography: `http://alfredpi.local/choregraphy/new`
+- Swagger: `http://alfredpi.local/swaggerui`
+- OpenAPI: `http://alfredpi.local/api/openapi`
+- Choreographies: `http://alfredpi.local/api/choregraphies`
+
+When repository access is available, inspect:
+
+- `rabbit_manager/src/alfredpi_choregraphy_parser_lexer.xrl`
+- `rabbit_manager/src/alfredpi_choregraphy.yrl`
+- `rabbit_manager/lib/alfredpi/executor.ex`
+- `rabbit_manager/priv/choregraphy/builtins.chor`
+
+## DSL Quick Reference
+
+Values:
+
+- String: `"hello.mp3"`
+- Integer: `250`, `-5`, `1_000`
+- Color: `~RRGGBB`
+- Variable: capitalized identifier such as `Delay`
+- Comment: `# explanation`
+
+Built-in variables:
+
+- Ears: `Left`, `Right`, `Both`
+- LEDs: `Led0`, `Led1`, `Led2`, `Led3`, `Led4`
+
+Actions:
+
+```text
+move_ear Left, 5
+set_ear Right, 12
+wait_ear Left
+led_color ~ff0000, Led2
+play "https://example.com/sounds", "success.mp3"
+sleep 250
+```
+
+Assignments:
+
+```text
+var Delay = 250
+var Color = ~ff006e
+
+led_color Color, Led0
+sleep Delay
+```
+
+Repetition:
+
+```text
+repeat 5
+  led_color ~ff0000, Led1
+  sleep 200
+  led_color ~000000, Led1
+  sleep 200
+end
+```
+
+Parallel execution:
+
+```text
+exec
+  play "https://example.com/sounds", "success.mp3"
+and
+  repeat 5
+    led_color ~ff0000, Led1
+    sleep 500
+  end
+end
+```
+
+Sequential instructions are written on separate lines. An `exec` block finishes when its longest branch finishes.
+
+## Workflow
+
+1. Ask what emotion, duration, sound, lights, and ear movements are wanted.
+2. Inspect existing choreographies and confirm supported syntax.
+3. Find a suitably licensed sound when needed.
+4. Require a stable direct MP3 or WAV URL returning HTTP 200.
+5. Split a sound URL at its final slash:
+
+```text
+https://host/path/success.mp3
+```
+
+becomes:
+
+```text
+play "https://host/path", "success.mp3"
+```
+
+6. Calculate animation duration explicitly from every `sleep`.
+7. Present the proposed experience and receive approval.
+8. Open `/choregraphy/new`.
+9. Fill in:
+   - A descriptive title
+   - A unique uppercase code
+   - The choreography actions
+10. Save without executing unless the user requested execution.
+
+The OpenAPI currently exposes listing and playback, not creation, so create choreographies through the LiveView editor.
+
+## Verification
+
+After saving, verify all of the following:
+
+- The UI reports `Choregraphy saved.`
+- The editor navigates to `/choregraphy/<CODE>`
+- `GET /api/choregraphies` contains the title and code
+- The sound URL still returns HTTP 200 with an audio MIME type
+- The calculated duration meets the request
+- The final LED state is intentional
+
+Only execute through the UI or:
+
+```text
+GET /api/choregraphies/<CODE>/play
+```
+
+when the user explicitly asks.
+
+## Design Guidance
+
+For entertaining animations:
+
+- Use contrasting colors rather than tiny shade changes.
+- Prefer rhythmic chases, pulses, flashes, or symmetrical patterns.
+- Keep sleeps around 150–400 ms for energetic motion.
+- Run sound and animation inside separate `exec` branches.
+- End with an intentional pose: lights off, a signature color, or a calm resting state.
+- Avoid rapid ear reversals that could stress the hardware.
+
+## Common Mistakes
+
+| Mistake | Correction |
+|---|---|
+| Using `#ff0000` | Use `~ff0000` |
+| Passing one complete URL to `play` | Split it into root URL and filename |
+| Using lowercase variable names | Variables begin with an uppercase letter |
+| Assuming `LedAll` exists | Address `Led0` through `Led4` individually |
+| Treating sleep values as seconds | Values are milliseconds |
+| Inventing tracks or animation widgets | Write actions in the choreography DSL |
+| Saving and immediately playing | Execute only with explicit permission |
+| Leaving LEDs accidentally illuminated | Add an intentional final state |
+
+## Completion Report
+
+Report:
+
+- Choreography title and code
+- Estimated duration
+- Sound source and license
+- Visual behavior
+- Verification evidence
+- Whether it was executed
