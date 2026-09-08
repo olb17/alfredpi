@@ -12,6 +12,16 @@ This guide explains how to install and operate Alfredpi on a compatible Nabaztag
 
 Alfredpi currently targets the custom `alfredpi_rpi3a` Nerves system. Do not install its firmware on unrelated hardware.
 
+## Security disclaimer
+
+> [!CAUTION]
+> The current firmware is intended for development or use on a trusted, isolated local network. It is not hardened for exposure to untrusted networks or the public internet. Review and address the following issues before deployment:
+>
+> 1. **Universal SSH credentials**: the advertised SSH service uses `alfredpi` as both its username and password.
+> 2. **Committed production signing secret**: `secret_key_base` is not differentiated by device.
+> 3. **Unauthenticated administration**: `/config`, choreography execution, API actions and device controls do not require authentication. In particular, `/config` can reboot, halt or reset the device.
+> 5. **Weak web configuration**: the configuration uses a fixed private IP, plaintext HTTP and `check_origin: false`.
+
 ## Install firmware on an SD card
 
 > [!WARNING]
@@ -49,6 +59,28 @@ http://alfredpi.local/
 ```
 
 If that address does not resolve, find the rabbit's IP address in your router and use `http://DEVICE_IP/`.
+
+## Connect over SSH
+
+From a computer on the same network, connect to the rabbit with:
+
+```sh
+ssh alfredpi@alfredpi.local
+```
+
+When prompted, enter `alfredpi` as the password. The username and password are both `alfredpi`.
+
+If `alfredpi.local` does not resolve, replace it with the rabbit's IP address:
+
+```sh
+ssh alfredpi@DEVICE_IP
+```
+
+The SSH session opens an Elixir shell that can control the rabbit through functions in `Alfredpi.RabbitManager`. To discover the available functions, run:
+
+```elixir
+h Alfredpi.RabbitManager
+```
 
 ### Reopen Wi-Fi setup
 

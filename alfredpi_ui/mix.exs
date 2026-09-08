@@ -42,12 +42,12 @@ defmodule AlfredpiUi.MixProject do
     [
       {:phoenix, "~> 1.8.0"},
       {:phoenix_html, "~> 4.1"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 1.1.0"},
+      {:phoenix_live_reload, "~> 1.7", only: :dev},
+      {:phoenix_live_view, "~> 1.2"},
       {:lazy_html, ">= 0.1.0", only: :test},
-      {:phoenix_live_dashboard, "~> 0.8.3"},
+      {:phoenix_live_dashboard, "~> 0.9"},
       {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.5", runtime: Mix.env() == :dev},
       {:heroicons,
        github: "tailwindlabs/heroicons",
        tag: "v2.2.0",
@@ -56,20 +56,20 @@ defmodule AlfredpiUi.MixProject do
        compile: false,
        depth: 1},
       {:swoosh, "~> 1.16"},
-      {:req, "~> 0.5"},
+      {:req, "~> 0.7"},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.26"},
+      {:gettext, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
-      {:hackney, "~> 1.9"},
+      {:hackney, "~> 4.7"},
       {:open_api_spex, "~> 3.18"},
       {:briefly, "~> 0.5.0"},
       {:rabbit_manager, path: "../rabbit_manager"},
-      {:live_debugger, "~> 0.3.0", only: :dev},
+      {:live_debugger, "~> 1.0", only: :dev},
       {:phoenix_ecto, "~> 4.5"},
-      {:tidewave, "~> 0.4", only: :dev}
+      {:tidewave, "~> 0.9", only: :dev}
     ]
   end
 

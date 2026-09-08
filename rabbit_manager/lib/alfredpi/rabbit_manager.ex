@@ -1,4 +1,19 @@
 defmodule Alfredpi.RabbitManager do
+  @moduledoc """
+  Coordinates access to the rabbit's hardware and embedded applications.
+
+  On a rabbit, the functions in the hardware API can be called directly from
+  the Elixir shell opened over SSH. For example:
+
+      Alfredpi.RabbitManager.ear_move(:left, 5)
+      Alfredpi.RabbitManager.leds_color("#ff0000", :all)
+      Alfredpi.RabbitManager.play_file("/path/to/sound.mp3")
+
+  Use `h Alfredpi.RabbitManager.function_name` in IEx for help with a specific
+  function. Ear selectors are `:left` and `:right`; LED selectors are `:led_0`
+  through `:led_4`, or `:all`.
+  """
+
   use GenServer
   require Logger
 
@@ -108,50 +123,122 @@ defmodule Alfredpi.RabbitManager do
     GenServer.call(__MODULE__, :platform_ready)
   end
 
+  @doc """
+  Moves `ear` by a relative number of motor clicks.
+
+  Pass `:left` or `:right` as the ear. A positive or negative `clicks` value
+  selects the direction.
+
+      Alfredpi.RabbitManager.ear_move(:left, 5)
+  """
   def ear_move(ear, clicks) do
     GenServer.call(__MODULE__, {:ear_move, ear, clicks}, @hw_timeout)
   end
 
+  @doc """
+  Moves `ear` to an absolute position.
+
+      Alfredpi.RabbitManager.ear_position(:right, 10)
+  """
   def ear_position(ear, position) do
     GenServer.call(__MODULE__, {:ear_position, ear, position}, @hw_timeout)
   end
 
+  @doc """
+  Waits until the selected ear has stopped moving.
+
+      Alfredpi.RabbitManager.ear_wait(:left)
+  """
   def ear_wait(ear) do
     GenServer.call(__MODULE__, {:ear_wait, ear}, @hw_timeout)
   end
 
+  @doc """
+  Reads the current position of an ear.
+
+  Returns `{:ok, position}` on success.
+
+      Alfredpi.RabbitManager.ear_get(:left)
+  """
   def ear_get(ear) do
     GenServer.call(__MODULE__, {:ear_get, ear}, @hw_timeout)
   end
 
+  @doc """
+  Sets one or all LEDs to a color.
+
+  `color` is a hexadecimal RGB string such as `"#ff0000"`. The LED selector
+  can be `:led_0` through `:led_4`; it defaults to `:all`.
+
+      Alfredpi.RabbitManager.leds_color("#00ff00")
+      Alfredpi.RabbitManager.leds_color("#0000ff", :led_2)
+  """
   def leds_color(color, index \\ :all) do
     GenServer.call(__MODULE__, {:leds_color, color, index})
   end
 
+  @doc """
+  Downloads and plays the named audio resource relative to `root`.
+
+      Alfredpi.RabbitManager.play_url("https://example.com/sounds/", "hello.mp3")
+  """
   def play_url(root, name) do
     GenServer.call(__MODULE__, {:play_url, root, name}, @hw_timeout)
   end
 
+  @doc """
+  Plays an MP3 or WAV file from the rabbit's local filesystem.
+
+      Alfredpi.RabbitManager.play_file("/data/hello.mp3")
+  """
   def play_file(file) do
     GenServer.call(__MODULE__, {:play_file, file}, @hw_timeout)
   end
 
+  @doc """
+  Starts recording audio to a WAV file on the rabbit's local filesystem.
+
+  Call `stop_recording_file/0` to finish the recording.
+
+      Alfredpi.RabbitManager.record_file("/data/recording.wav")
+  """
   def record_file(file) do
     GenServer.call(__MODULE__, {:record_file, file})
   end
 
+  @doc """
+  Stops the active audio recording.
+
+      Alfredpi.RabbitManager.stop_recording_file()
+  """
   def stop_recording_file() do
     GenServer.call(__MODULE__, :stop_recording_file)
   end
 
+  @doc """
+  Reboots the rabbit.
+
+  The SSH session disconnects when this function succeeds.
+  """
   def reboot() do
     GenServer.call(__MODULE__, :reboot)
   end
 
+  @doc """
+  Shuts down the rabbit.
+
+  The SSH session disconnects when this function succeeds. Wait for shutdown
+  to complete before removing power.
+  """
   def halt() do
     GenServer.call(__MODULE__, :halt)
   end
 
+  @doc """
+  Erases persistent device data and reboots the rabbit.
+
+  This operation is destructive and cannot be undone.
+  """
   def factory_reset() do
     GenServer.call(__MODULE__, :factory_reset)
   end

@@ -19,9 +19,9 @@ defmodule Alfredpi.AppMan.MixProject do
     [
       {:phoenix_pubsub, "~> 2.0"},
       {:ecto, "~> 3.10"},
-      {:websockex, "~> 0.4.3"},
+      {:websockex, "~> 0.5.1"},
       {:jason, "~> 1.2"},
-      {:req, "~> 0.5.0"},
+      {:req, "~> 0.7.3"},
       {:mix_test_watch, "~> 1.0", only: [:dev, :test]}
     ]
   end
